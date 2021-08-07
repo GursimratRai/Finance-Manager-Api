@@ -1,5 +1,7 @@
+//Acquiring mongoose
 const mongoose = require('mongoose');
 
+//Creating a Schema
 const userSchema = mongoose.Schema({
 
     name:{
@@ -18,14 +20,6 @@ const userSchema = mongoose.Schema({
     transactions:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'transaction'
-    }],
-    incomes:[{
-        type : mongoose.Schema.Types.ObjectId,
-        ref:'income'
-    }],
-    expenses:[{
-        type:mongoose.Schema.Types.ObjectId,
-        ref : 'expense'
     }]
 },{
     timestamps:true

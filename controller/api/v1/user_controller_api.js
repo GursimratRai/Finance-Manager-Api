@@ -15,7 +15,6 @@ module.exports.signUp = function(req,res){
     User.findOne({email:req.body.email},function(err,user){
         if(err)
         {
-            console.log('Error in creating the user in the database during sign up');
             return res.json(500,{
                 success:false,
                 error : 'Internal Server Error'
@@ -27,7 +26,6 @@ module.exports.signUp = function(req,res){
             User.create(req.body,function(err){
                 if(err)
                 {
-                    console.log('Error in creating a user in the database during sign up');
                     return res.json(500,{
                         success:false,
                         error : 'Internal Server Error'
@@ -74,7 +72,6 @@ module.exports.createSession = async function(req,res){
 
     
     }catch(err){
-        console.log('Error in creating the session',err);
         return res.json(500,{
             success:false,
             error : 'Internal Server Error'

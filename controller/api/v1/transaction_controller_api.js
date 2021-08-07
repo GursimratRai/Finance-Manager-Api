@@ -1,7 +1,11 @@
+//Acquiring transaction modal
 const Transaction = require("../../../models/transaction");
+//Acquiring user modal
 const User = require("../../../models/user");
+//Use momentJs for date and time
 const moment = require("moment");
 
+//Asynchronous Function for creating new transaction in the database
 module.exports.create = async function (req, res) {
   try {
     let transaction = await Transaction.create({
@@ -36,7 +40,6 @@ module.exports.create = async function (req, res) {
       },
     });
   } catch (err) {
-    console.log("error in transaction", err);
     return res.json(404, {
       success: false,
       message: "Internal Server Error",
@@ -44,6 +47,7 @@ module.exports.create = async function (req, res) {
   }
 };
 
+//Asynchronous Function for deleting transactions from the database
 module.exports.destroy = async function (req, res) {
   try {
     let user = await User.findById(req.user._id);
@@ -76,6 +80,7 @@ module.exports.destroy = async function (req, res) {
   }
 };
 
+//Asynchronous Function for updating transaction in the database
 module.exports.update = async function (req, res) {
   try {
     await Transaction.findByIdAndUpdate({ _id: req.query.id }, req.body);
@@ -104,6 +109,7 @@ module.exports.update = async function (req, res) {
   }
 };
 
+//Asynchronous Function for fetching all the transaction list from the database
 module.exports.index = async function (req, res) {
   try {
     const list = await Transaction.find(
@@ -128,7 +134,6 @@ module.exports.index = async function (req, res) {
       },
     });
   } catch (err) {
-    console.log("Error in finding the list of transaction in the database");
     return res.json(404, {
       success: false,
       message: "Request Not Complete",
@@ -136,6 +141,7 @@ module.exports.index = async function (req, res) {
   }
 };
 
+//Asynchronous Function for searching data according to the date or range
 module.exports.searchByRange = async function (req, res) {
   try {
     var startDate = req.query.start;
@@ -171,7 +177,6 @@ module.exports.searchByRange = async function (req, res) {
       },
     });
   } catch (err) {
-    console.log("Error in finding the index of transaction in the database");
     return res.json(404, {
       success: false,
       message: "Request Not Complete",

@@ -1,5 +1,7 @@
+//Acquiring mongoose
 const mongoose = require('mongoose');
 
+//Creating a Schema
 const transactionSchema = mongoose.Schema({
 
     type:{
@@ -26,9 +28,6 @@ const transactionSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    tags:[{
-        type:String
-    }],
     user : {
         type : mongoose.Schema.Types.ObjectId,
         ref : 'User'
