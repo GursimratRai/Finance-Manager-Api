@@ -1,13 +1,17 @@
-const mongoose = require('mongoose');
+// // Requiring the library i.e. mongoose
+const mongoose = require("mongoose");
 
-mongoose.connect('mongodb://localhost/finance-manager-development');
+//Establishing the connection with the mongodb database
+const URL= process.env.FM_DB_URL;
 
-const db = mongoose.connection;
-
-db.on('error',console.error.bind(console,"Error in Connecting to MongoDB"));
-
-db.once('open',function(){
-    console.log("Successfully Connected to mongoDB");
-})
+//Acquiring the connection
+const db = async () => {
+  await mongoose.connect(URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }).catch((err) => {
+      console.log('Error in connecting to database',err);
+  });
+};
 
 module.exports = db;

@@ -8,7 +8,7 @@ const User = require('../models/user');
 
 let opts = {
     jwtFromRequest : ExtractJWT.fromAuthHeaderAsBearerToken(),
-    secretOrKey : 'financer'
+    secretOrKey : process.env.SECRET_KEY
 }
 
 //Using jwt strategy
